@@ -27,12 +27,12 @@
             <version>${assertj.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.awaitility</groupId>
-            <artifactId>awaitility</artifactId>
-            <version>${awaitility.version}</version>
-            <scope>test</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.awaitility</groupId>-->
+<!--            <artifactId>awaitility</artifactId>-->  <!--Убрал из за проблем с потоками, Awaitility использует отдельный поток, а WebDriver в Selenide — потокозависимый-->
+<!--            <version>${awaitility.version}</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
