@@ -16,7 +16,7 @@
         <lombok.version>1.18.38</lombok.version>
         <testng.version>7.11.0</testng.version>
         <assertj.version>3.27.3</assertj.version>
-        <awaitility.version>4.3.0</awaitility.version>
+<!--        <awaitility.version>4.3.0</awaitility.version>-->
         <selenide.version>7.9.2</selenide.version>
     </properties>
 
