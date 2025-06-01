@@ -44,6 +44,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+<!--Компилирует Java-код -->
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <compilerArgs>
@@ -56,6 +57,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>aspectj-maven-plugin</artifactId>
+<!--Обрабатывает код с помощью AspectJ — добавляет в него аспекты (вставки) для TestIT-->
                 <version>${aspectj-maven-plugin.version}</version>
                 <configuration>
                     <complianceLevel>${maven.compiler.source}</complianceLevel>
@@ -82,6 +84,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+<!--Запускает юнит-тесты (JUnit, TestNG) во время сборки Maven-->
                 <version>${surefire.version}</version>
                 <configuration>
                     <argLine>
@@ -115,6 +118,7 @@
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
+<!--Генерирует Allure-отчёты по результатам прогона тестов.-->
                 <version>${allure-maven.version}</version>
                 <configuration>
                     <reportVersion>${allure-bom.version}</reportVersion>
@@ -124,7 +128,7 @@
         </plugins>
     </build>
 
-<!--ALLURE-->
+<!--FOR ALLURE-->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -138,7 +142,7 @@
     </dependencyManagement>
 
     <dependencies>
-<!--TESTS-->
+<!--FOR TESTS-->
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
@@ -162,7 +166,7 @@
             <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
-<!--ALLURE-->
+<!--FOR ALLURE-->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
@@ -182,7 +186,7 @@
 Без него TestIT не сможет "вплести" свой код в твои тесты.
 -->
         </dependency>
-<!--TESTIT-->
+<!--FOR TESTIT-->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
