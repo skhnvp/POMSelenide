@@ -18,12 +18,12 @@
         <assertj.version>3.27.3</assertj.version>
         <selenide.version>7.9.2</selenide.version>
         <!--        <awaitility.version>4.3.0</awaitility.version>-->
-
         <allure-bom.version>2.15.0</allure-bom.version>
         <allure-testng.version>2.15.0</allure-testng.version>
         <allure-maven.version>2.15.2</allure-maven.version>
         <aspectj.version>1.9.20.1</aspectj.version>
         <surefire.version>3.1.2</surefire.version>
+        <testit-adapter-testng.version>2.6.2-TMS-5.3</testit-adapter-testng.version>
     </properties>
 
     <build>
@@ -125,6 +125,11 @@
             <artifactId>aspectjweaver</artifactId>
             <version>${aspectj.version}</version>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>ru.testit</groupId>
+            <artifactId>testit-adapter-testng</artifactId>
+            <version>${testit-adapter-testng.version}</version>
         </dependency>
         <!--        <dependency>-->
         <!--            <groupId>org.awaitility</groupId>-->

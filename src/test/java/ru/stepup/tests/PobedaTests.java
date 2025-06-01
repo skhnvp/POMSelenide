@@ -2,12 +2,15 @@ package ru.stepup.tests;
 
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.*;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import ru.stepup.BaseTest;
 import ru.stepup.pages.BookingPage;
 import ru.stepup.pages.MainPage;
 import ru.stepup.utils.AllureAttachments;
 import ru.stepup.utils.OpenNewWindow;
+import ru.testit.annotations.Title;
+import ru.testit.listener.BaseTestNgListener;
 
 import static com.codeborne.selenide.Condition.cssValue;
 import static com.codeborne.selenide.Selenide.webdriver;
@@ -15,15 +18,16 @@ import static com.codeborne.selenide.WebDriverConditions.title;
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.*;
 
-
+@Listeners(BaseTestNgListener.class)
 @Epic(value = "StepUp Java-Selenide-Allure Tests")
 public class PobedaTests extends BaseTest {
-    MainPage mainPage = new MainPage();;
+    MainPage mainPage = new MainPage();
 
     @Severity(value = SeverityLevel.CRITICAL)
     @Feature(value = "Pobeda")
     @Description("Проверка начальной страницы")
-    @TmsLink(value = "https://testit.link/test1")
+    @Title("Задание №1. Page Object. Всплывающее окно")
+    @TmsLink(value = "https://team-pufj.testit.software/projects/1/tests/6")
     @Link(name = "Документация", url = "https://online.stepup.study/viewer/sessions/5845/tasks/2558")
     @Story(value = "https://online.stepup.study/viewer/sessions/5845/tasks/2558")
     @Test(description = "Задание №1. Page Object. Всплывающее окно")
@@ -50,7 +54,8 @@ public class PobedaTests extends BaseTest {
     @Severity(value = SeverityLevel.CRITICAL)
     @Feature(value = "Pobeda")
     @Description("Проверка ошибки поиска")
-    @TmsLink(value = "https://testit.link/test2")
+    @Title("Задание №2. Page Object. Инициирование поиска")
+    @TmsLink(value = "https://team-pufj.testit.software/projects/1/tests/5")
     @Link(name = "Документация", url = "https://online.stepup.study/viewer/sessions/5845/tasks/2559")
     @Story(value = "https://online.stepup.study/viewer/sessions/5845/tasks/2559")
     @Test(description = "Задание №2. Page Object. Инициирование поиска")
@@ -91,7 +96,8 @@ public class PobedaTests extends BaseTest {
     @Severity(value = SeverityLevel.CRITICAL)
     @Feature(value = "Pobeda")
     @Description("Проверка обводки при ошибке поиска брони")
-    @TmsLink(value = "https://testit.link/test3")
+    @Title("Задание №3. Page Object. Результаты поиска")
+    @TmsLink(value = "https://team-pufj.testit.software/projects/1/tests/4")
     @Link(name = "Документация", url = "https://online.stepup.study/viewer/sessions/5845/tasks/2560")
     @Story(value = "https://online.stepup.study/viewer/sessions/5845/tasks/2560")
     @Test(description = "Задание №3. Page Object. Результаты поиска")
@@ -143,6 +149,8 @@ public class PobedaTests extends BaseTest {
     @Severity(value = SeverityLevel.MINOR)
     @Feature(value = "Failure")
     @Flaky
+    @Title("errorTest")
+    @TmsLink(value = "https://team-pufj.testit.software/projects/1/tests/7")
     @Test
     public void errorTest() {
         throw new RuntimeException();
