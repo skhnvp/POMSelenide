@@ -22,7 +22,6 @@ public class PobedaTests extends BaseTest {
 
     @Severity(value = SeverityLevel.CRITICAL)
     @Feature(value = "Pobeda")
-    @DisplayName
     @Description("Проверка начальной страницы")
     @TmsLink(value = "https://testit.link/test1")
     @Link(name = "Документация", url = "https://online.stepup.study/viewer/sessions/5845/tasks/2558")
