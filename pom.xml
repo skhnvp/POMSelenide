@@ -18,12 +18,19 @@
         <assertj.version>3.27.3</assertj.version>
         <selenide.version>7.9.2</selenide.version>
         <!--        <awaitility.version>4.3.0</awaitility.version>-->
+
         <allure-bom.version>2.15.0</allure-bom.version>
         <allure-testng.version>2.15.0</allure-testng.version>
         <allure-maven.version>2.15.2</allure-maven.version>
-        <aspectj.version>1.9.20.1</aspectj.version>
         <surefire.version>3.1.2</surefire.version>
-        <testit-adapter-testng.version>2.6.2-TMS-5.3</testit-adapter-testng.version>
+
+        <testit.version>2.6.2-TMS-5.3</testit.version>
+
+        <aspectj.version>1.9.20.1</aspectj.version>
+        <aspectjtools.version>1.9.24</aspectjtools.version>
+        <aspectj-maven-plugin.version>1.14.0</aspectj-maven-plugin.version>
+        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+
     </properties>
 
     <build>
@@ -37,7 +44,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version> <!-- или другую совместимую версию -->
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <compilerArgs>
                         <arg>-parameters</arg>
@@ -49,12 +56,11 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>aspectj-maven-plugin</artifactId>
-                <version>1.14.0</version>
+                <version>${aspectj-maven-plugin.version}</version>
                 <configuration>
                     <complianceLevel>${maven.compiler.source}</complianceLevel>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
-                    <!--Allows the adapter to accept real parameter names-->
                 </configuration>
                 <executions>
                     <execution>
@@ -69,7 +75,7 @@
                     <dependency>
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjtools</artifactId>
-                        <version>1.9.24</version>
+                        <version>${aspectjtools.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -118,6 +124,7 @@
         </plugins>
     </build>
 
+<!--ALLURE-->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -131,6 +138,7 @@
     </dependencyManagement>
 
     <dependencies>
+<!--TESTS-->
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
@@ -154,6 +162,7 @@
             <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
+<!--ALLURE-->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
@@ -165,26 +174,38 @@
             <artifactId>aspectjweaver</artifactId>
             <version>${aspectj.version}</version>
             <scope>runtime</scope>
+<!--он внедряет дополнительный код (аспекты) в твои тесты во время запуска.
+Нужен TestIT адаптеру, чтобы:
+перехватывать аннотации (@Test, @Title, @TmsLink, и т.д.),
+автоматически собирать результаты и логи,
+не ломать твой тестовый код.
+Без него TestIT не сможет "вплести" свой код в твои тесты.
+-->
         </dependency>
+<!--TESTIT-->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
-            <version>1.9.24</version>
+            <version>${aspectj.version}</version>
+<!--Это рантайм-библиотека AspectJ — она содержит классы, которые нужны во время выполнения программы, если используется AOP.
+Пример: если где-то используется @Aspect, JoinPoint и другие AOP-штуки — они живут здесь.-->
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjtools</artifactId>
-            <version>1.9.24</version>
+            <version>${aspectj.version}</version>
+<!--Это инструмент для компиляции аспектов — например, чтобы aspectj-maven-plugin мог собрать аспекты в .class-файлы.
+Это как дополнительный инструмент, используемый во время сборки проекта, чтобы подготовить нужные "вкрапления" в байт-код.-->
         </dependency>
         <dependency>
             <groupId>ru.testit</groupId>
             <artifactId>testit-adapter-testng</artifactId>
-            <version>${testit-adapter-testng.version}</version>
+            <version>${testit.version}</version>
         </dependency>
         <dependency>
             <groupId>ru.testit</groupId>
             <artifactId>testit-java-commons</artifactId>
-            <version>2.6.2-TMS-5.3</version>
+            <version>${testit.version}</version>
         </dependency>
 
         <!--        <dependency>-->
