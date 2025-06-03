@@ -39,13 +39,13 @@ public class PobedaTests extends BaseTest {
         });
 
         step("Навести мышку на пункт «Информация»", () -> {
-            mainPage.getInfoButton().hover();
+            mainPage.getINFO_BUTTON().hover();
         });
 
         step("Убедиться, что появилось всплывающее окно, которое содержит следующие заголовки: «Подготовка к полету», «Полезная информация», «О компании»", () -> {
-            assertThat(mainPage.getInfoCompanyButton().isDisplayed()).isTrue();
-            assertThat(mainPage.getInfoUsefulButton().isDisplayed()).isTrue();
-            assertThat(mainPage.getReadyToFlightButton().isDisplayed()).isTrue();
+            assertThat(mainPage.getINFO_COMPANY_BUTTON().isDisplayed()).isTrue();
+            assertThat(mainPage.getINFO_USEFUL_BUTTON().isDisplayed()).isTrue();
+            assertThat(mainPage.getREADY_TO_FLIGHT_BUTTON().isDisplayed()).isTrue();
         });
 
         AllureAttachments.screenshot("Всплывающее окно");
@@ -67,11 +67,11 @@ public class PobedaTests extends BaseTest {
         });
 
         step("Проскроллить страницу к блоку поиска билета и убедиться, что блок с поиском билета действительно отображается (есть поле Откуда, Куда, Дата вылета Туда, Дата вылета Обратно)", () -> {
-            mainPage.getSearchBlock().scrollTo();
-            assertThat(mainPage.getFromWhereSearchInput().isDisplayed()).isTrue();
-            assertThat(mainPage.getToWhereSearchInput().isDisplayed()).isTrue();
-            assertThat(mainPage.getDepartingSearchInput().isDisplayed()).isTrue();
-            assertThat(mainPage.getReturningSearchInput().isDisplayed()).isTrue();
+            mainPage.getSEARCH_BLOCK().scrollTo();
+            assertThat(mainPage.getFROM_WHERE_SEARCH_INPUT().isDisplayed()).isTrue();
+            assertThat(mainPage.getTO_WHERE_SEARCH_INPUT().isDisplayed()).isTrue();
+            assertThat(mainPage.getDEPARTING_SEARCH_INPUT().isDisplayed()).isTrue();
+            assertThat(mainPage.getRETURNING_SEARCH_INPUT().isDisplayed()).isTrue();
         });
 
 
@@ -79,14 +79,14 @@ public class PobedaTests extends BaseTest {
                 "откуда – Москва (без выбора аэропорта) + нажать Enter\n" +
                 "куда – Санкт-Петербург + нажать Enter\n" +
                 "Нажать кнопку «Поиск».", () -> {
-            mainPage.getFromWhereSearchInput().setValue("Санкт-Петербург").pressEnter();
-            mainPage.getToWhereSearchInput().setValue("Москва").pressEnter();
-            mainPage.getSubmitSearchButton().click();
+            mainPage.getFROM_WHERE_SEARCH_INPUT().setValue("Санкт-Петербург").pressEnter();
+            mainPage.getTO_WHERE_SEARCH_INPUT().setValue("Москва").pressEnter();
+            mainPage.getSUBMIT_SEARCH_BUTTON().click();
         });
 
 
         step("Убедиться, что около поля «Туда» появилась красная обводка.", () -> {
-            mainPage.getDepartingSearchDiv()
+            mainPage.getDEPARTING_SEARCH_DIV()
                     .shouldHave(cssValue("border-top-color", "rgba(213, 0, 98, 1)"));
         });
 
@@ -109,7 +109,7 @@ public class PobedaTests extends BaseTest {
         });
 
         step("кликнуть на пункт «Управление бронированием»", () -> {
-            mainPage.getBookingRadioButton().click();
+            mainPage.getBOOKING_RADIO_BUTTON().click();
         });
 
 
@@ -117,9 +117,9 @@ public class PobedaTests extends BaseTest {
                 "а) есть поле «Номер заказа или билета»;\n" +
                 "б) есть поле «Фамилия клиента»;\n" +
                 "в) есть кнопка «Поиск».", () -> {
-            assertThat(mainPage.getBookingSurname().isDisplayed()).isTrue();
-            assertThat(mainPage.getBookingTicketNumber().isDisplayed()).isTrue();
-            assertThat(mainPage.getBookingSearchButton().isDisplayed()).isTrue();
+            assertThat(mainPage.getBOOKING_SURNAME().isDisplayed()).isTrue();
+            assertThat(mainPage.getBOOKING_TICKET_NUMBER().isDisplayed()).isTrue();
+            assertThat(mainPage.getBOOKING_SEARCH_BUTTON().isDisplayed()).isTrue();
         });
 
         String firstWindow = WebDriverRunner.getWebDriver().getWindowHandle();
@@ -127,9 +127,9 @@ public class PobedaTests extends BaseTest {
         step("Ввести в поля ввода данные:\n" +
                 "номер заказа – XXXXXX, фамилия – Qwerty\n" +
                 "и нажать кнопку «Поиск»", () -> {
-            mainPage.getBookingSurname().setValue("Qwerty");
-            mainPage.getBookingTicketNumber().setValue("XXXXXX");
-            mainPage.getBookingSearchButton().click();
+            mainPage.getBOOKING_SURNAME().setValue("Qwerty");
+            mainPage.getBOOKING_TICKET_NUMBER().setValue("XXXXXX");
+            mainPage.getBOOKING_SEARCH_BUTTON().click();
         });
 
         OpenNewWindow.wait(firstWindow);
@@ -137,10 +137,10 @@ public class PobedaTests extends BaseTest {
         BookingPage bookingPage = new BookingPage();
 
         step("Убедиться, что в новой вкладке на экране отображается текст ошибки «Заказ с указанными параметрами не найден»", () -> {
-            bookingPage.getCheckBoxAgreement().click();
-            bookingPage.getButtonSearch().click();
-            assertThat(bookingPage.getErrorMessage().isDisplayed()).isTrue();
-            assertThat(bookingPage.getErrorMessage().getText()).isEqualTo("Заказ с указанными параметрами не найден");
+            bookingPage.getCHECK_BOX_AGREEMENT().click();
+            bookingPage.getBUTTON_SEARCH().click();
+            assertThat(bookingPage.getERROR_MESSAGE().isDisplayed()).isTrue();
+            assertThat(bookingPage.getERROR_MESSAGE().getText()).isEqualTo("Заказ с указанными параметрами не найден");
         });
 
         AllureAttachments.screenshot("Заказ с указанными параметрами не найден");
